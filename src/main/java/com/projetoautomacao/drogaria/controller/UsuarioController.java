@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projetoautomacao.drogaria.model.Categoria;
-import com.projetoautomacao.drogaria.service.CategoriaService;
+import com.projetoautomacao.drogaria.model.Usuario;
+import com.projetoautomacao.drogaria.service.UsuarioService;
 
 @RestController
-@RequestMapping(value = "/categorias")
-public class CategoriaController {
+@RequestMapping(value = "/usuarios")
+public class UsuarioController {
 	
 	@Autowired
-	private CategoriaService categoriaService;
+	private UsuarioService usuarioService;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		
-		Optional<Categoria> obj = categoriaService.buscar(id);
+		Optional<Usuario> obj = usuarioService.buscar(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
