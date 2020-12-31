@@ -61,6 +61,12 @@ public class DrogariaApplication implements CommandLineRunner {
 		Categoria cat1 = new Categoria(null, "Perfumaria");
 		Categoria cat2 = new Categoria(null, "Frauda");
 		Categoria cat3 = new Categoria(null, "Medicamento Genérico");
+		Categoria cat4 = new Categoria(null, "Medicamento Ético");
+		Categoria cat5 = new Categoria(null, "Sorvete");
+		Categoria cat6 = new Categoria(null, "Medicamento Similar");
+		Categoria cat7 = new Categoria(null, "Medicamento Géneriao PBM");
+		Categoria cat8 = new Categoria(null, "Medicamento Ético PBM");
+		Categoria cat9 = new Categoria(null, "Medicamento Similar PBM");
 		
 		PrincipioAtivo pa1 = new PrincipioAtivo(null, "Não informado");
 		PrincipioAtivo pa2 = new PrincipioAtivo(null, "Losartan Potasico");
@@ -72,7 +78,7 @@ public class DrogariaApplication implements CommandLineRunner {
 		
 		Produto p1 = new Produto(null, "Desodorante", 14.00);
 		Produto p2 = new Produto(null, "Creme corpo", 14.00);
-		Produto p3 = new Produto(null, "Turma da Monica", 18.90);
+		Produto p3 = new Produto(null, "Frauda Turma da Monica", 18.90);
 		Produto p4 = new Produto(null, "Losartana", 5.00);
 		
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2));
@@ -102,7 +108,7 @@ public class DrogariaApplication implements CommandLineRunner {
 		p3.getFabricantes().addAll(Arrays.asList(fa3));
 		p4.getFabricantes().addAll(Arrays.asList(fa1));
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9));
 		principioAtivoRepository.saveAll(Arrays.asList(pa1, pa2));
 		fabricanteRepository.saveAll(Arrays.asList(fa1, fa2, fa3));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
@@ -121,7 +127,6 @@ public class DrogariaApplication implements CommandLineRunner {
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 		
 		Usuario cli1 = new Usuario(null, "Leonardo Francisco dos Santos", "leolmblsantos@gmail.com", "36378912377", TipoUsuario.PESSOAFISICA);
-		
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 		
 		Usuario cli2 = new Usuario(null, "Maria umbelina de Oliveira Santos", "leolhml@gmail.com", "31628382740", TipoUsuario.PESSOAFISICA);

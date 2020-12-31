@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -28,7 +28,7 @@ public class Produto implements Serializable {
 	
 /* @JsonBackReference esta anotação faz com que a API não se confunda quando for feito a requisiçao */
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA",
 		joinColumns = @JoinColumn(name = "produto_id"),
@@ -36,7 +36,7 @@ public class Produto implements Serializable {
 	)
 	private List<Categoria> categorias = new ArrayList<>();
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_PRINCIPIO_ATIVO",
 		joinColumns = @JoinColumn(name = "produto_id"),
@@ -44,7 +44,7 @@ public class Produto implements Serializable {
 	)
 	private List<PrincipioAtivo> principioAtivos = new ArrayList<>();
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_FABRICANTE",
 		joinColumns = @JoinColumn(name = "produto_id"),

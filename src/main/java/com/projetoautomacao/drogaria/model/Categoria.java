@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 /*Esta classe vai ser o mesmo que o grupo no Gestcom*/
 
 @Entity
@@ -25,7 +23,6 @@ public class Categoria implements Serializable {
 	
 	/* @JsonManagedReference esta anotação faz com que a API não se confunda quando for feito a requisiçao */	
 	
-	@JsonManagedReference
 	@ManyToMany(mappedBy = "categorias")
 	private List<Produto> produtos = new ArrayList<>();
 	
