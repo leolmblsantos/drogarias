@@ -81,9 +81,21 @@ public class DrogariaApplication implements CommandLineRunner {
 		Produto p3 = new Produto(null, "Frauda Turma da Monica", 18.90);
 		Produto p4 = new Produto(null, "Losartana", 5.00);
 		
+		Produto p5 = new Produto(null, "Toalha", 50.00);
+		Produto p6 = new Produto(null, "Colcha", 200.00);
+		Produto p7 = new Produto(null, "TV true color", 1200.00);
+		Produto p8 = new Produto(null, "Roçadeira", 800.00);
+		Produto p9 = new Produto(null, "Abajour", 100.00);
+		Produto p10 = new Produto(null, "Pendente", 180.00);
+		Produto p11 = new Produto(null, "Shampoo", 90.00);
+		
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2));
-		cat2.getProdutos().addAll(Arrays.asList(p3));
-		cat3.getProdutos().addAll(Arrays.asList(p4));
+		cat2.getProdutos().addAll(Arrays.asList(p3, p5));
+		cat3.getProdutos().addAll(Arrays.asList(p4,p6, p7));
+		cat4.getProdutos().addAll(Arrays.asList(p5,p6, p10));
+		cat5.getProdutos().addAll(Arrays.asList(p5,p10));
+		cat6.getProdutos().addAll(Arrays.asList(p8,p9, p11));
+		cat7.getProdutos().addAll(Arrays.asList(p5,p10));
 		
 		pa1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
 		pa2.getProdutos().addAll(Arrays.asList(p4));
@@ -97,6 +109,13 @@ public class DrogariaApplication implements CommandLineRunner {
 		p2.getCategorias().addAll(Arrays.asList(cat1));
 		p3.getCategorias().addAll(Arrays.asList(cat2));
 		p4.getCategorias().addAll(Arrays.asList(cat3));
+		p5.getCategorias().addAll(Arrays.asList(cat5, cat6));
+		p6.getCategorias().addAll(Arrays.asList(cat7));
+		p7.getCategorias().addAll(Arrays.asList(cat8));
+		p8.getCategorias().addAll(Arrays.asList(cat9));
+		p9.getCategorias().addAll(Arrays.asList(cat5, cat9));
+		p10.getCategorias().addAll(Arrays.asList(cat6, cat8));
+		p11.getCategorias().addAll(Arrays.asList(cat7));
 		
 		p1.getPrincipioAtivos().addAll(Arrays.asList(pa1));
 		p2.getPrincipioAtivos().addAll(Arrays.asList(pa1));
@@ -111,7 +130,7 @@ public class DrogariaApplication implements CommandLineRunner {
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9));
 		principioAtivoRepository.saveAll(Arrays.asList(pa1, pa2));
 		fabricanteRepository.saveAll(Arrays.asList(fa1, fa2, fa3));
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4));
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
 		
 		Estado est1 = new Estado(null, "Minas Gerais", "MG");
 		Estado est2 = new Estado(null, "Goias", "GO");

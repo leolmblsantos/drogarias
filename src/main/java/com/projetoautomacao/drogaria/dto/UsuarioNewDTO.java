@@ -7,9 +7,9 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.projetoautomacao.drogaria.service.validation.ClienteInsert;
+import com.projetoautomacao.drogaria.service.validation.UsuarioInsert;
 
-@ClienteInsert
+@UsuarioInsert
 public class UsuarioNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
