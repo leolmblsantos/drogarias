@@ -2,23 +2,45 @@ package com.projetoautomacao.drogaria.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.projetoautomacao.drogaria.service.validation.ClienteInsert;
+
+@ClienteInsert
 public class UsuarioNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=120, message="O tamanho deve ser entre 5 e 120 caracteres")
 	private String nome;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Email(message="Email inválido")
 	private String email;
-	private String cpfOucnpj;
+	
+	@NotEmpty(message = "Preenchimento obrigatório")
+	private String cpfOuCnpj;
 	
 	/*Foi feito a alteração no enums - alterou de tipoUsuario para Integer*/
 	private Integer tipo;
 	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String logradouro;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String numero;
 	private String complemento;
 	private String bairro;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String cep;
 
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String telefone1;
+	
 	private String telefone2;
 	private String telefone3;
 	
@@ -43,12 +65,12 @@ public class UsuarioNewDTO implements Serializable {
 		this.email = email;
 	}
 
-	public String getCpfOucnpj() {
-		return cpfOucnpj;
+	public String getCpfOuCnpj() {
+		return cpfOuCnpj;
 	}
 
-	public void setCpfOucnpj(String cpfOucnpj) {
-		this.cpfOucnpj = cpfOucnpj;
+	public void setCpfOuCnpj(String cpfOuCnpj) {
+		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
 	public Integer getTipo() {

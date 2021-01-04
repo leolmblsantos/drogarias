@@ -34,12 +34,7 @@ public class UsuarioService {
 	
 	
 	public Usuario find(Integer id) {
-		
-//		UserSS user = UserService.authenticated();
-//		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
-//			throw new AuthorizationException("Acesso negado");
-//		}
-		
+			
 		Optional<Usuario> obj = usuarioRepository.findById(id);
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -85,7 +80,7 @@ public class UsuarioService {
 	}
 	
 	public Usuario fromDTO(UsuarioNewDTO objDto) {
-		Usuario usu = new Usuario(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOucnpj(), TipoUsuario.toEnum(objDto.getTipo()));
+		Usuario usu = new Usuario(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoUsuario.toEnum(objDto.getTipo()));
 		Cidade cid = new Cidade(objDto.getCidadeId(), null, null); 
 		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), usu, cid);
 		usu.getEnderecos().add(end);

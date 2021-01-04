@@ -27,7 +27,7 @@ public class Usuario implements Serializable {
 	
 	private String nome;
 	private String email;
-	private String cpfOucnpj;
+	private String cpfOuCnpj;
 	
 	/*Foi feito a alteração no enums - alterou de tipoUsuario para Integer*/
 	private Integer tipo;
@@ -42,12 +42,12 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, String nome, String email, String cpfOucnpj, TipoUsuario tipo) {
+	public Usuario(Integer id, String nome, String email, String cpfOuCnpj, TipoUsuario tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.cpfOucnpj = cpfOucnpj;
+		this.cpfOuCnpj = cpfOuCnpj;
 	/* ----- Faz a verificação se o tipo contem dados ou não ---------- */
 		this.tipo = (tipo==null) ? null : tipo.getCod();
 	}
@@ -76,12 +76,12 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public String getCpfOucnpj() {
-		return cpfOucnpj;
+	public String getCpfOuCnpj() {
+		return cpfOuCnpj;
 	}
 
-	public void setCpfOucnpj(String cpfOucnpj) {
-		this.cpfOucnpj = cpfOucnpj;
+	public void setCpfOuCnpj(String cpfOuCnpj) {
+		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
 	/*Foi feito a alteração no enu*/
