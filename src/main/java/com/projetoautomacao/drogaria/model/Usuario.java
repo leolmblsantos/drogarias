@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -23,6 +24,7 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String nome;
 	private String email;
 	private String cpfOucnpj;
@@ -30,8 +32,7 @@ public class Usuario implements Serializable {
 	/*Foi feito a alteração no enums - alterou de tipoUsuario para Integer*/
 	private Integer tipo;
 	
-	
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@ElementCollection
@@ -47,7 +48,8 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 		this.email = email;
 		this.cpfOucnpj = cpfOucnpj;
-		this.tipo = tipo.getCod();
+	/* ----- Faz a verificação se o tipo contem dados ou não ---------- */
+		this.tipo = (tipo==null) ? null : tipo.getCod();
 	}
 
 	public Integer getId() {

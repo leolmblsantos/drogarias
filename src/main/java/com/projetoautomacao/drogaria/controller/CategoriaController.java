@@ -2,7 +2,6 @@ package com.projetoautomacao.drogaria.controller;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -30,13 +29,13 @@ public class CategoriaController {
 	private CategoriaService categoriaService;
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Optional<Categoria>> find(@PathVariable Integer id) {
+	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
 		
-		Optional<Categoria> obj = categoriaService.find(id);
+		Categoria obj = categoriaService.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
-	@RequestMapping(method=RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto) {
 		Categoria obj = categoriaService.fromDTO(objDto);
 		obj = categoriaService.insert(obj);
