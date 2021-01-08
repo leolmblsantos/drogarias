@@ -5,17 +5,21 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.projetoautomacao.drogaria.model.enums.Perfil;
 import com.projetoautomacao.drogaria.model.enums.TipoUsuario;
 
 @Entity
@@ -35,6 +39,9 @@ public class Usuario implements Serializable {
 	/*Foi feito a alteração no enums - alterou de tipoUsuario para Integer*/
 	private Integer tipo;
 	
+	@JsonIgnore
+	private String senha;
+	
 	@OneToMany(mappedBy = "usuario", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
@@ -42,10 +49,15 @@ public class Usuario implements Serializable {
 	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
+	
 	public Usuario() {
+		addPerfil(Perfil.CLIENTE);
 	}
 
-	public Usuario(Integer id, String nome, String email, String cpfOuCnpj, TipoUsuario tipo) {
+	public Usuario(Integer id, String nome, String email, String cpfOuCnpj, TipoUsuario tipo, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -53,6 +65,8 @@ public class Usuario implements Serializable {
 		this.cpfOuCnpj = cpfOuCnpj;
 	/* ----- Faz a verificação se o tipo contem dados ou não ---------- */
 		this.tipo = (tipo==null) ? null : tipo.getCod();
+		this.senha = senha;
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Integer getId() {
@@ -95,6 +109,14 @@ public class Usuario implements Serializable {
 	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo.getCod();
 	}
+	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
 	public List<Endereco> getEnderecos() {
 		return enderecos;
@@ -111,7 +133,17 @@ public class Usuario implements Serializable {
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
+	
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
+	}
 
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
