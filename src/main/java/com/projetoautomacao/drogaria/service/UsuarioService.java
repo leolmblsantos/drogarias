@@ -17,9 +17,12 @@ import com.projetoautomacao.drogaria.dto.UsuarioNewDTO;
 import com.projetoautomacao.drogaria.model.Cidade;
 import com.projetoautomacao.drogaria.model.Endereco;
 import com.projetoautomacao.drogaria.model.Usuario;
+import com.projetoautomacao.drogaria.model.enums.Perfil;
 import com.projetoautomacao.drogaria.model.enums.TipoUsuario;
 import com.projetoautomacao.drogaria.repository.EnderecoRepository;
 import com.projetoautomacao.drogaria.repository.UsuarioRepository;
+import com.projetoautomacao.drogaria.security.UserSS;
+import com.projetoautomacao.drogaria.service.exceptions.AuthorizationException;
 import com.projetoautomacao.drogaria.service.exceptions.DataIntegrityException;
 import com.projetoautomacao.drogaria.service.exceptions.ObjectNotFoundException;
 
@@ -35,7 +38,15 @@ public class UsuarioService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+	
+	
+	
 	public Usuario find(Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
 			
 		Optional<Usuario> obj = usuarioRepository.findById(id);
 		
