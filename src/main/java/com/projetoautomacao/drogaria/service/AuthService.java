@@ -23,25 +23,26 @@ public class AuthService {
 	@Autowired
 	private EmailService emailService;
 	
+/* ============= Random gera caracteres aleatorios ============== */
 	private Random rand = new Random();
 	
 	
 	
 	public void sendNewPassword(String email) {
-		Usuario cliente = usuarioRepository.findByEmail(email);
-		if (cliente == null) {
+		Usuario usuario = usuarioRepository.findByEmail(email);
+		if (usuario == null) {
 			throw new ObjectNotFoundException("Email não encontrado");
 		}
 		
 		String newPass = newPassword();
-		cliente.setSenha(pe.encode(newPass));
+		usuario.setSenha(pe.encode(newPass));
 		
-		usuarioRepository.save(cliente);
-		emailService.sendNewPasswordEmail(cliente, newPass);
+		usuarioRepository.save(usuario);
+		emailService.sendNewPasswordEmail(usuario, newPass);
 	}
 
 
-
+/* ========== Gera uma senha com 10 caracteres ============== */
 	private String newPassword() {
 		char[] vet = new char[10];
 		for (int i=0; i<10; i++) {
