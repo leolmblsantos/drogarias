@@ -9,16 +9,19 @@ import org.springframework.stereotype.Service;
 
 import com.projetoautomacao.drogaria.model.Categoria;
 import com.projetoautomacao.drogaria.model.Cidade;
+import com.projetoautomacao.drogaria.model.Empresa;
 import com.projetoautomacao.drogaria.model.Endereco;
 import com.projetoautomacao.drogaria.model.Estado;
 import com.projetoautomacao.drogaria.model.Fabricante;
 import com.projetoautomacao.drogaria.model.PrincipioAtivo;
 import com.projetoautomacao.drogaria.model.Produto;
 import com.projetoautomacao.drogaria.model.Usuario;
+import com.projetoautomacao.drogaria.model.enums.EmpresaNum;
 import com.projetoautomacao.drogaria.model.enums.Perfil;
 import com.projetoautomacao.drogaria.model.enums.TipoUsuario;
 import com.projetoautomacao.drogaria.repository.CategoriaRepository;
 import com.projetoautomacao.drogaria.repository.CidadeRepository;
+import com.projetoautomacao.drogaria.repository.EmpresaRepository;
 import com.projetoautomacao.drogaria.repository.EnderecoRepository;
 import com.projetoautomacao.drogaria.repository.EstadoRepository;
 import com.projetoautomacao.drogaria.repository.FabricanteRepository;
@@ -53,6 +56,9 @@ public class DBService {
 	
 	@Autowired
 	private FabricanteRepository fabricanteRepository;
+	
+	@Autowired
+	private EmpresaRepository empresaRepository;
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -153,13 +159,21 @@ public class DBService {
 		cli2.getTelefones().addAll(Arrays.asList("93883321", "34252625"));
 		cli2.addPerfil(Perfil.ADMIN);
 		
+//		Empresa emp1 = new Empresa(null, "Aldeia Guanabara", "aldeiaguanabara@email.com", "12230667000160", EmpresaNum.EMPRESA1);
+//		Empresa emp2 = new Empresa(null, "Aldeia Gato preto", "aldeiagatopreto@email.com", "12230667000160", EmpresaNum.EMPRESA2);
+		
 		Endereco e1 = new Endereco(null, "Avenida 85", "300", "Apto 303", "Setor Marista", "38220834", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Goias", "105", "Sala 800", "Centro", "38777012", cli1, c2);
 		Endereco e3 = new Endereco(null, "Avenida Floriano", "2106", null, "Centro", "281777012", cli2, c3);
 		
+//		emp1.getEnderecos().addAll(Arrays.asList(e1));
+//		emp2.getEnderecos().addAll(Arrays.asList(e2));
+		
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 		cli2.getEnderecos().addAll(Arrays.asList(e3));
 		
+
+//		empresaRepository.saveAll(Arrays.asList(emp1, emp2));
 		usuarioRepository.saveAll(Arrays.asList(cli1, cli2));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 		
