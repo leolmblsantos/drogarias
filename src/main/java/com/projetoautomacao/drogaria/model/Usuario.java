@@ -36,7 +36,7 @@ public class Usuario implements Serializable {
 	private String email;
 	private String cpfOuCnpj;
 	
-	/*Foi feito a alteração no enums - alterou de tipoUsuario para Integer*/
+/*Foi feito a alteração no enums - alterou de tipoUsuario para Integer*/
 	private Integer tipo;
 	
 	@JsonIgnore
@@ -63,7 +63,9 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-	/* ----- Faz a verificação se o tipo contem dados ou não ---------- */
+		
+/* ----- Faz a verificação se o tipo contem dados ou não ---------- */
+		
 		this.tipo = (tipo==null) ? null : tipo.getCod();
 		this.senha = senha;
 		addPerfil(Perfil.CLIENTE);

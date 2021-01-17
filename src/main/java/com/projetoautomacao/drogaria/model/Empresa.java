@@ -8,7 +8,6 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,46 +15,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.projetoautomacao.drogaria.model.enums.EmpresaNum;
-
 @Entity
 public class Empresa implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
 	private String nome;
-	
-	@Column(unique = true)
-	private String email;
-	
 	private String cnpj;
 	
-	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
-	private List<Endereco> enderecos = new ArrayList<>();
+	private String email;
+	
+	@OneToMany(mappedBy = "empresa", cascade=CascadeType.ALL)
+	private List<Endereco> enderecosEmpresa = new ArrayList<>();
 	
 	@ElementCollection
-	@CollectionTable(name="TELEFONE_EMPRESA")
-	private Set<String> telefones = new HashSet<>();
+	@CollectionTable(name = "TELEFONE_EMPRESA")
+	private Set<String> telefoneEmpresa = new HashSet<>();
 	
-	private Integer empresaNum;
-
+	
 	public Empresa() {
 	}
 
-	
-	public Empresa(Integer id, String nome, String email, String cnpj, EmpresaNum  empresaNum) {
+	public Empresa(Integer id, String nome, String cnpj, String email) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.email = email;
 		this.cnpj = cnpj;
-		this.empresaNum = (empresaNum==null) ? null : empresaNum.getCod();
+		this.email = email;
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -73,14 +62,6 @@ public class Empresa implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getCnpj() {
 		return cnpj;
 	}
@@ -88,29 +69,30 @@ public class Empresa implements Serializable {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	
 
-	public List<Endereco> getEnderecos() {
-		return enderecos;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public List<Endereco> getEnderecosEmpresa() {
+		return enderecosEmpresa;
 	}
 
-	public Set<String> getTelefones() {
-		return telefones;
+	public void setEnderecosEmpresa(List<Endereco> enderecosEmpresa) {
+		this.enderecosEmpresa = enderecosEmpresa;
 	}
 
-	public void setTelefones(Set<String> telefones) {
-		this.telefones = telefones;
+	public Set<String> getTelefoneEmpresa() {
+		return telefoneEmpresa;
 	}
 
-	public EmpresaNum getEmpresaNum() {
-		return EmpresaNum.toEnum(empresaNum);
-	}
-
-	public void setEmpresaNum(EmpresaNum empresaNum) {
-		this.empresaNum = empresaNum.getCod();
+	public void setTelefoneEmpresa(Set<String> telefoneEmpresa) {
+		this.telefoneEmpresa = telefoneEmpresa;
 	}
 
 	@Override

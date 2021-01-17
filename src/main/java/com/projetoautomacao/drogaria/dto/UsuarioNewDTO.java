@@ -163,6 +163,5 @@ public class UsuarioNewDTO implements Serializable {
 	public void setCidadeId(Integer cidadeId) {
 		this.cidadeId = cidadeId;
 	}
-	
-	
+
 }

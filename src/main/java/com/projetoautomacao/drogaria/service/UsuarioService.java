@@ -94,8 +94,8 @@ public class UsuarioService {
 	
 	public Usuario fromDTO(UsuarioNewDTO objDto) {
 		Usuario usu = new Usuario(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoUsuario.toEnum(objDto.getTipo()), bCryptPasswordEncoder.encode(objDto.getSenha()));
-		Cidade cid = new Cidade(objDto.getCidadeId(), null, null); 
-		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), usu, cid);
+		Cidade cid = new Cidade(objDto.getCidadeId(), null, null);
+		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), usu, cid, null);
 		usu.getEnderecos().add(end);
 		usu.getTelefones().add(objDto.getTelefone1());
 		
